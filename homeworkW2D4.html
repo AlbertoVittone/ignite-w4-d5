@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="name" placeholder="name">
+    <input type="text" id="extra" placeholder="extra">
+    <input type="text" id="phone" placeholder="phone">
+    <input type="number" id="numberOfPersons">
+    <input type="checkbox" id="smoker">
+    <input type="datetime-local" id="date">
+
+    <input type="button" onclick="sendReservation()" />
+
+    <ul id="reservations"></ul>
+
+    <script>
+        window.onload = async () => {
+            await loadReservations()
+        }
+
+        async function loadReservations() {
+            let reservations = await fetch("https://striveschool.herokuapp.com/api/reservation/")
+            let resObj = await reservations.json()
+
+            let list = document.querySelector("#reservations")
+            list.innerHTML += resObj.map(x => `<li>${x.name} -> ${x.numberOfPersons} </li>`).join("")
+        }
+
+        async function sendReservation() {
+            let myReservation = {
+                name: document.querySelector("#name").value,
+                numberOfPersons: document.querySelector("#numberOfPersons").value,
+                smoker: document.querySelector("#name").checked,
+                dateTime: document.querySelector("#date").value,
+                extra: document.querySelector("#extra").value,
+                phone: document.querySelector("#phone").value,
+            }
+
+            let reservations = await fetch("https://striveschool.herokuapp.com/api/reservation/", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(myReservation)
+            })
+
+            await loadReservations()
+        }
+    </script>
+</body>
+
+</html>
