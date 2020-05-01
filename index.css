@@ -2,6 +2,25 @@
     min-height: 100vh;
     width: 100%;
 }
+    /* width */
+::-webkit-scrollbar {
+    width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #181818;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #121212;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    }
 
 #main {
     display: flex;
@@ -19,22 +38,35 @@ body {
     min-width: 230px;
     width: 230px;
     background-color: #030303;
+    text-align: center;
+    list-style: none;
+    padding: 30px;
+}
+
+#menu img {
+    width: 100%;
+    margin-bottom:20px;
+}
+
+#menu li {
+    line-height: 3em;
+    text-transform: uppercase;
 }
 
 #songs {
     background-color: #121212;
     flex-grow: 1;
     padding: 30px;
+    overflow: hidden;
 }
 
 .artist-list{
-    display:flex;
-}
-
-.artist-container {
+    /* display:flex; */
     overflow-x: auto;
     white-space: nowrap;
 }
+
+
 
 .artist-container .container-title {
     margin-bottom: 20px;
@@ -53,7 +85,25 @@ body {
     z-index:1000;
 }
 
+.player-container {
+    display:flex;
+    padding:10px;
+}
+
+.player-container img {
+    height: 70px;
+    width:70px;
+}
+
+.player-container p {
+    margin: 0;
+    padding: 0;
+    line-height: 70px;
+    padding-left: 20px;
+}
+
 .song-card {
+    display:inline-block;
     position: relative;
     margin-right: 20px;
     width: 300px;
@@ -124,6 +174,25 @@ body {
     text-overflow: ellipsis;
   }
   
+  a {
+      color: white;
+  }
+
+#artist {
+    min-height: 400px;
+    background-position: center;
+    display:flex;
+    justify-content: center;
+    background-position: center;
+    text-align: center;
+    align-items: center;
+}
+
+#artist h1 {
+    font-size: 4em;
+    text-shadow: 2px 2px 2px #000000;
+}
+
   .song-card-play {
     position: absolute;
     left: 10px;
